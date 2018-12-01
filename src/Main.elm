@@ -1,12 +1,12 @@
 module Main exposing (main)
 
 import Browser
+import Day1
 import Dict exposing (Dict)
 import Html exposing (Html, button, div, text)
 import Html.Attributes
 import Html.Events exposing (onClick)
 import List.Extra as List
-import Puzzle1
 
 
 type alias Model =
@@ -33,7 +33,7 @@ view : Model -> Html Msg
 view model =
     let
         puzzles =
-            [ Puzzle1.solution ]
+            [ Day1.puzzle1, Day1.puzzle2 ]
                 |> List.indexedMap
                     (\index solution ->
                         puzzleView
