@@ -2,6 +2,7 @@ module Main exposing (main)
 
 import Browser
 import Day1
+import Day2
 import Dict exposing (Dict)
 import Html exposing (Html, button, div, text)
 import Html.Attributes
@@ -33,7 +34,7 @@ view : Model -> Html Msg
 view model =
     let
         puzzles =
-            [ Day1.puzzle1, Day1.puzzle2 ]
+            [ Day1.puzzle1, Day1.puzzle2, Day2.puzzle1, Day2.puzzle2 ]
                 |> List.indexedMap
                     (\index solution ->
                         puzzleView
