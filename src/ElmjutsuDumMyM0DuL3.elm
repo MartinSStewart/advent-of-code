@@ -1,4 +1,5 @@
-module Day2 exposing (puzzle1, puzzle2)
+module ElmjutsuDumMyM0DuL3 exposing (..)
+-- exposing (puzzle1, puzzle2)
 
 import List.Extra as List
 import SantasLittleHelper
