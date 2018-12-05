@@ -11,7 +11,6 @@ puzzle1 input =
     Parser.run (parseList logParser) input
         |> Result.toMaybe
         |> Maybe.andThen (getGuardSleepTime >> getSleepiestGuardAndTheirSnooziestMinute)
-        |> Debug.log "b"
         |> Maybe.map (\a -> a.guardId * a.snooziestMinute |> String.fromInt)
         |> Maybe.withDefault ""
 
@@ -209,4 +208,26 @@ logParser =
 
 puzzle2 : String -> String
 puzzle2 input =
-    input
+    let
+        guardSleepData =
+            Parser.run (parseList logParser) input
+                |> Result.toMaybe
+                |> Maybe.map getGuardSleepTime
+    in
+    guardSleepData
+        |> Maybe.andThen
+            (\a ->
+                a
+                    |> List.map (\guard -> ( guard.id, guard.sleepSchedule |> snooziestMinuteAndFrequency ))
+                    |> List.maximumBy (\( _, ( _, frequency ) ) -> frequency)
+                    |> Maybe.map (\( guardId, ( minute, _ ) ) -> guardId * minute |> String.fromInt)
+            )
+        |> Maybe.withDefault ""
+
+
+snooziestMinuteAndFrequency : List SleepSpan -> ( Int, Int )
+snooziestMinuteAndFrequency sleepSpan =
+    List.range 0 60
+        |> List.map (\a -> ( a, List.count (minuteInSleepSpan a) sleepSpan ))
+        |> List.maximumBy Tuple.second
+        |> Maybe.withDefault ( 0, 0 )

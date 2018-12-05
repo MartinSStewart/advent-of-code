@@ -4,6 +4,7 @@ import Browser
 import Day1
 import Day2
 import Day4
+import Day5
 import Dict exposing (Dict)
 import Html exposing (Html, button, div, text)
 import Html.Attributes
@@ -43,6 +44,7 @@ view model =
             , identity
             , Day4.puzzle1
             , Day4.puzzle2
+            , Day5.puzzle1
             ]
                 |> List.indexedMap
                     (\index solution ->
