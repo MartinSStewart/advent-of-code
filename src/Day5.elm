@@ -43,3 +43,8 @@ puzzle1Helper input =
 
     else
         puzzle1Helper newString
+
+
+puzzle2 : String -> String
+puzzle2 input =
+    input
